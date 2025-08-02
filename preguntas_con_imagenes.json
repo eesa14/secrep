@@ -1,0 +1,165 @@
+[
+       {
+        "pregunta": "99.- Un usuario de IAM recibe un mensaje de “Acceso denegado” cuando intenta acceder a objetos en un bucket de Amazon S3. El usuario y el bucket S3 están en la misma cuenta de AWS. El bucket está configurado para usar cifrado del lado del servidor con claves de AWS KMS (SSE-KMS) para cifrar todos sus objetos en reposo, utilizando una clave administrada por el cliente (customer managed key) de la misma cuenta de AWS. El bucket no tiene ninguna política de bucket definida. Al usuario de IAM se le han otorgado permisos mediante una política de IAM que permite la acción kms:Decrypt sobre la clave administrada por el cliente. La política de IAM también permite las acciones s3:List* y s3:Get* sobre el bucket de S3 y sus objetos. ¿Cuál de las siguientes podría ser una razón por la cual el usuario de IAM no puede acceder a los objetos del bucket S3?",
+        "opciones": [
+            "A. La política de IAM necesita permitir también el permiso kms:DescribeKey.",
+            "B. El bucket de S3 fue cambiado para usar una clave administrada por AWS (AWS managed key) para cifrar los objetos en reposo.",
+            "C. Se necesita agregar una política de bucket que permita al usuario de IAM acceder a los objetos.",
+            "D. Se ha editado la política de clave KMS para eliminar la capacidad de que la cuenta de AWS tenga acceso completo a la clave"
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "100.- Una empresa tiene una política que exige que todos los datos de los buckets de Amazon S3 estén cifrados durante la transmisión. Un ingeniero de seguridad debe implementar una política de bucket de S3 que niegue cualquier operación si los datos no están cifrados. ¿Qué política de bucket de S3 cumplirá con este requisito?.",
+        "opciones": [
+          
+            "A.",
+            "B.",
+            "C.",
+            "D."
+        ],
+        "respuestas_correctas": ["B"],
+	    "imagenes": [],	
+	    "imagenes_respuesta": [
+
+            {"opcion": "A", "url": "images/image100-1.png"},
+            {"opcion": "B", "url": "images/image100-2.png"},
+            {"opcion": "C", "url": "images/image100-3.png"},
+            {"opcion": "D", "url": "images/image100-4.png"}
+]
+},
+{
+        "pregunta": "193.- Una empresa tiene certificados públicos que son administrados por AWS Certificate Manager (ACM). Los certificados pueden ser certificados importados o certificados gestionados por ACM con métodos de validación mixtos. Un ingeniero de seguridad necesita diseñar una solución de monitoreo que envíe alertas por correo electrónico cuando un certificado esté próximo a vencer. ¿Cuál es la forma más eficiente operativamente de cumplir con este requisito?",
+        "opciones": [
+            "A. Crear una función de AWS Lambda que liste todos los certificados y revise cada uno usando el SDK de AWS para obtener su información. Filtrar según el atributo NotAfter y enviar una notificación por correo. Usar una expresión de programación de Amazon EventBridge para ejecutar la función Lambda diariamente.",
+            "B. Crear una alarma de Amazon CloudWatch. Agregar todos los ARN de certificados en el espacio de nombres AWS/CertificateManager a la métrica DaysToExpiry. Configurar la alarma para que envíe una notificación a un tema de Amazon SNS cuando el valor de DaysToExpiry sea menor o igual a 31.",
+            "C. Configurar AWS Security Hub. Activar el estándar AWS Foundational Security Best Practices con integración de ACM para enviar hallazgos. Crear y usar una acción personalizada que haga coincidir el patrón de eventos desde ACM usando el atributo NotBefore como fuente del evento. Crear un tema de Amazon SNS como destino.",
+            "D. Crear una regla de Amazon EventBridge usando un patrón predefinido para ACM. Elegir el evento ACM Certificate Approaching Expiration como patrón de evento. Crear un tema de Amazon SNS como destino."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "224.- Una empresa utiliza reglas de AWS Config para identificar buckets de Amazon S3 que no cumplen con la política de protección de datos de la empresa. Los buckets S3 están alojados en varias regiones de AWS y en varias cuentas de AWS. Las cuentas están organizadas dentro de una organización en AWS Organizations. La empresa necesita una solución para corregir los buckets S3 no conformes ya existentes y también cualquier bucket S3 no conforme que se cree en el futuro. ¿Qué solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Implementar un agregador de AWS Config con agregación de datos de recursos a nivel organizacional. Crear una función de AWS Lambda que responda a los hallazgos de AWS Config sobre buckets S3 no conformes, eliminando o reconfigurando dichos buckets.",
+            "B. Implementar un agregador de AWS Config con agregación de datos de recursos a nivel organizacional. Crear una SCP que contenga una instrucción Deny para evitar la creación de nuevos buckets S3 no conformes. Aplicar la SCP a todas las unidades organizativas de la organización.",
+            "C. Implementar un agregador de AWS Config limitado solo a las cuentas y regiones que la empresa usa actualmente. Crear una función de AWS Lambda que responda a los hallazgos de AWS Config sobre buckets S3 no conformes, eliminando o reconfigurando dichos buckets.",
+            "D. Implementar un agregador de AWS Config limitado solo a las cuentas y regiones que la empresa usa actualmente. Crear una SCP que contenga una instrucción Deny para evitar la creación de nuevos buckets S3 no conformes. Aplicar la SCP a todas las OUs de la organización."
+        ],
+        "respuestas_correctas": [
+            "A"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "250.- Una empresa tiene una organización en AWS Organizations que incluye cuentas dedicadas para cada una de sus unidades de negocio. La empresa está recolectando todos los logs de AWS CloudTrail de las cuentas en un único bucket de Amazon S3 ubicado en la cuenta principal (top-level). El equipo de gobernanza de TI tiene acceso a esta cuenta principal. Un ingeniero de seguridad necesita permitir que cada unidad de negocio acceda a sus propios logs de CloudTrail. El ingeniero de seguridad crea un rol de IAM en la cuenta principal para cada una de las otras cuentas. Para cada rol, crea una política de IAM que otorga permisos de solo lectura a los objetos en el bucket de S3 con el prefijo correspondiente a los logs de esa unidad. ¿Qué acción debe tomar el ingeniero de seguridad en cada cuenta de unidad de negocio para permitir que un usuario IAM en esa cuenta pueda leer los logs?",
+        "opciones": [
+            "A. Adjuntar una política al usuario IAM que permita al usuario asumir el rol que fue creado en la cuenta principal. Especificar el ARN del rol en la política.",
+            "B. Crear una SCP que otorgue permisos a la cuenta principal.",
+            "C. Usar la cuenta raíz de la unidad de negocio para asumir el rol creado en la cuenta principal. Especificar el ARN del rol en la política.",
+            "D. Reenviar las credenciales del rol IAM de la cuenta principal al usuario IAM de la unidad de negocio."
+        ],
+        "respuestas_correctas": [
+            "A"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "262.- Una empresa necesita conservar los datos almacenados en los grupos de logs de Amazon CloudWatch Logs. La empresa debe retener estos datos durante 90 días. Además, debe recibir una notificación en AWS Security Hub cuando el período de retención de un grupo de logs no cumpla con este requisito. ¿Qué solución proporcionará la notificación adecuada?",
+        "opciones": [
+            "A. Crear una acción personalizada en Security Hub para evaluar el período de retención de los grupos de logs.",
+            "B. Crear una política de protección de datos en CloudWatch Logs para evaluar el período de retención de los grupos de logs.",
+            "C. Crear una regla de automatización en Security Hub. Configurar la regla para evaluar el período de retención de los grupos de logs.",
+            "D. Usar la regla administrada de AWS Config que evalúa el período de retención de los grupos de logs. Asegurarse de que la integración de AWS Config con Security Hub esté habilitada."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+   {
+        "pregunta": "271.- Una empresa utiliza una estrategia de múltiples cuentas que emplea una organización en AWS Organizations con todas las funcionalidades habilitadas. La empresa ha activado el acceso confiable (trusted access) para AWS Account Management. Las nuevas cuentas se aprovisionan mediante AWS Control Tower Account Factory. La empresa debe asegurarse de que todas las nuevas cuentas dentro de la organización se conviertan automáticamente en cuentas miembro de AWS Security Hub. ¿Qué solución cumplirá con estos requisitos con el menor esfuerzo de desarrollo posible?",
+        "opciones": [
+            "A. Habilitar Security Hub en la cuenta de administración de la organización. Crear un flujo de trabajo con AWS Step Functions. Crear una regla de Amazon EventBridge para invocar el flujo cuando ocurra un evento CreateAccount.",
+            "B. Habilitar Security Hub en la cuenta de administración de la organización. Esperar a que todas las nuevas cuentas se incorporen automáticamente.",
+            "C. Habilitar Security Hub en la cuenta de administración de la organización. Crear una función AWS Lambda para habilitar Security Hub en las nuevas cuentas. Invocar la función Lambda usando un evento del ciclo de vida de AWS Control Tower cuando se aprovisione una nueva cuenta.",
+            "D. Usar la cuenta de administración de la organización para designar una cuenta delegada de Security Hub. En esa cuenta delegada, crear una política de configuración para habilitar Security Hub. Asociar la política de configuración a la raíz de la organización."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "275.- Una empresa ejecuta cargas de trabajo en AWS. Estas cargas están distribuidas en cuentas separadas de AWS para desarrollo, pruebas y producción. Todos los desarrolladores de la empresa pueden acceder a la cuenta de desarrollo. Un subconjunto de esos desarrolladores también puede acceder a las cuentas de pruebas y producción. La empresa está gastando demasiado tiempo administrando credenciales individuales para cada desarrollador en cada entorno. Un ingeniero de seguridad debe implementar una solución más escalable, que permita a los desarrolladores acceder a recursos en múltiples cuentas, y que además minimice el uso compartido de credenciales. ¿Qué solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Usar AWS Identity and Access Management Access Analyzer para identificar los permisos que los desarrolladores necesitan en cada cuenta. Configurar IAM Access Analyzer para aprovisionar automáticamente el acceso correcto para cada desarrollador.",
+            "B. Crear un flujo de trabajo en Amazon Simple Workflow Service (Amazon SWF). Indicar a los desarrolladores que usen ese flujo para solicitar acceso a otras cuentas cuando necesiten permisos adicionales.",
+            "C. Crear roles de IAM en las cuentas de pruebas y producción. Agregar una política que permita la acción sts:AssumeRole a esos roles. Crear roles de IAM en la cuenta de desarrollo para los desarrolladores que deben acceder a pruebas y producción. Agregar estos roles a la política de confianza de los nuevos roles en pruebas y producción.",
+            "D. Crear cuentas de servicio en los entornos de pruebas y producción. Entregar las claves de acceso de esas cuentas a los desarrolladores que necesiten acceso. Rotar las claves periódicamente."
+        ],
+        "respuestas_correctas": [
+            "C"
+        ],
+        "imagenes": []
+    },
+   {
+        "pregunta": "277.- Una empresa ejecuta una aplicación que envía registros (logs) a un grupo de registros en Amazon CloudWatch Logs. Los correos electrónicos de los usuarios de la aplicación se incluyen en esos registros. Los desarrolladores de la empresa necesitan ver los registros en CloudWatch Logs, pero un ingeniero de seguridad debe asegurarse de que los desarrolladores no puedan ver las direcciones de correo electrónico de los usuarios. ¿Qué solución cumplirá con este requisito?",
+        "opciones": [
+            "A. Usar Amazon Macie para escanear el grupo de registros. Configurar Macie con un identificador de datos personalizado que utilice una expresión regular para detectar patrones de correos electrónicos. Activar el descubrimiento automático de datos en Macie.",
+            "B. Crear una clave de AWS Key Management Service (AWS KMS). Configurar el grupo de registros para que utilice esa clave para cifrar los registros. Configurar la política de la clave para denegar el acceso al rol IAM que los desarrolladores asumen para usar CloudWatch Logs.",
+            "C. Crear un filtro de suscripción para el grupo de registros. Configurar la suscripción para que envíe los datos de los registros a una función de AWS Lambda. Programar la función Lambda para que analice las entradas del log y oculte (enmascare) los valores que sean direcciones de correo electrónico.",
+            "D. Configurar una política de protección de datos para el grupo de registros. Especificar el identificador de datos administrado por AWS llamado EmailAddress para el tipo de datos que se desea enmascarar. Activar la protección de datos para el grupo de registros."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "279.- Una empresa ejecuta cargas de trabajo en instancias de Amazon EC2. La empresa necesita monitorear continuamente las instancias EC2 en busca de vulnerabilidades de software y mostrar los hallazgos en AWS Security Hub. No se deben instalar agentes en las instancias EC2. ¿Qué solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Habilitar Amazon Inspector. Establecer el modo de escaneo en escaneo híbrido. Habilitar la integración de Amazon Inspector en Security Hub.",
+            "B. Usar Security Hub para habilitar el estándar AWS Foundational Security Best Practices. Esperar a que Security Hub genere los hallazgos.",
+            "C. Habilitar Amazon GuardDuty. Iniciar escaneos de malware bajo demanda usando GuardDuty Malware Protection. Habilitar la integración de GuardDuty en Security Hub.",
+            "D. Usar reglas administradas de AWS Config para detectar vulnerabilidades de software en EC2. Asegurarse de que Security Hub tenga habilitada la integración con AWS Config."
+        ],
+        "respuestas_correctas": [
+            "A"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "286.- Una empresa está investigando las acciones que realizó un rol de IAM. La empresa debe averiguar cuándo fue la última vez que el rol accedió a AWS Security Hub y cuándo fue la última vez que utilizó la acción DeleteInsight en Security Hub. ¿Qué solución proporcionará esta información?",
+        "opciones": [
+            "A. Usar las comprobaciones de la categoría de seguridad en AWS Trusted Advisor. Buscar el rol y examinar las acciones realizadas.",
+            "B. Usar la pestaña Access Advisor en AWS Identity and Access Management (IAM). Buscar Security Hub y las acciones realizadas.",
+            "C. Usar AWS Identity and Access Management (IAM) para generar un informe de credenciales. Buscar actividad de Security Hub en el informe.",
+            "D. Crear un analyzer en AWS Identity and Access Management Access Analyzer. Examinar los hallazgos sobre las acciones del rol en Security Hub."
+        ],
+        "respuestas_correctas": [
+            "B"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "305.- Una empresa tiene una aplicación que necesita leer objetos desde un bucket de Amazon S3. La empresa configura una política de IAM y la adjunta a un rol de IAM que la aplicación utiliza. Sin embargo, cuando la aplicación intenta leer objetos del bucket S3, recibe errores de AccessDenied. Un ingeniero de seguridad debe resolver este problema sin reducir la seguridad del bucket S3 ni de la aplicación. ¿Cuál solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Adjuntar una política de recursos al bucket S3 para otorgar acceso de lectura al rol.",
+            "B. Implementar una nueva versión de la aplicación en otra región de AWS y adjuntar el rol a la aplicación.",
+            "C. Revisar la política de IAM utilizando AWS IAM Access Analyzer para asegurarse de que otorga los permisos adecuados. Validar que la aplicación esté asumiendo correctamente el rol.",
+            "D. Asegurarse de que la función Block Public Access esté desactivada en el bucket S3. Revisar los registros de AWS CloudTrail para validar que la aplicación esté asumiendo correctamente el rol."
+        ],
+        "respuestas_correctas": [
+            "C"
+        ],
+        "imagenes": []
+    }
+]
+

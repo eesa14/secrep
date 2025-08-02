@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor {
+    width: 95%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.pregunta {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: justify;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pregunta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0,0,0,0.12);
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fdfdfd;
+    cursor: pointer;
+    text-align: justify;
+    font-size: 17px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.opcion:hover {
+    background-color: #f0f4ff;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.08);
+}
+
+.correcta {
+    background-color: #d4edda !important; /* Verde claro */
+    color: #155724;
+}
+
+.incorrecta {
+    background-color: #f8d7da !important; /* Rojo claro */
+    color: #721c24;
+}
+
+.pagina-control {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor {
+        width: 98%;
+        padding: 15px;
+    }
+
+    .pregunta {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .opcion {
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+    }
+}
