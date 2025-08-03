@@ -173,5 +173,113 @@
             "C"
         ],
         "imagenes": []
+    },
+    {
+        "pregunta": "145.- Un equipo de operaciones de desarrollo utiliza AWS Identity and Access Management (IAM) para gestionar los permisos de los usuarios. El equipo creó un rol de perfil de instancia de Amazon EC2 que utiliza la política administrada por AWS llamada ReadOnlyAccess. Cuando una aplicación que se ejecuta en una instancia EC2 intenta leer un archivo desde un bucket de Amazon S3 cifrado, la aplicación recibe un error AccessDenied. El administrador del equipo ha verificado que la política del bucket S3 permite el acceso a todos los usuarios de la cuenta. No hay una ACL de objeto adjunta al archivo. ¿Qué debe hacer el administrador para solucionar el problema de acceso en IAM?",
+        "opciones": [
+            "A. Editar la política ReadOnlyAccess para agregar permisos de kms:Decrypt",
+            "B. Agregar el rol IAM de EC2 como Principal autorizado en la política del bucket S3",
+            "C. Adjuntar una política inline con permisos de kms:Decrypt al rol IAM",
+            "D. Adjuntar una política inline con permisos S3:* al rol IAM"
+        ],
+        "respuestas_correctas": [
+            "C"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "170.- Una empresa utiliza AWS Organizations y tiene muchas cuentas de AWS. Ahora tiene un nuevo requisito: usar cifrado del lado del servidor con claves proporcionadas por el cliente (SSE-C) en todas las nuevas cargas de objetos a los buckets de Amazon S3. Un ingeniero de seguridad está creando una SCP (política de control de servicio) que incluya un efecto Deny para la acción s3:PutObject. ¿Qué condición debe agregar el ingeniero de seguridad a la SCP para hacer cumplir el nuevo requisito de SSE-C?.",
+        "opciones": [
+            "A.",
+            "B.",
+            "C.",
+            "D."
+        ],
+        "respuestas_correctas": ["A"],
+        "imagenes_respuesta": [
+
+	        {"opcion": "A", "url": "images/image170-1.png"},
+            {"opcion": "B", "url": "images/image170-2.png"},
+            {"opcion": "C", "url": "images/image170-3.png"},
+            {"opcion": "D", "url": "images/image170-4.png"}
+        ]
+    },
+    {
+        "pregunta": "236.- Una empresa utiliza AWS Organizations para gestionar una pequeña cantidad de cuentas de AWS. Sin embargo, planea agregar 1.000 cuentas más próximamente. La empresa permite que solo el equipo central de seguridad cree roles IAM para todas las cuentas y equipos. Los equipos de aplicaciones deben enviar solicitudes de creación de roles IAM al equipo de seguridad. Actualmente, el equipo de seguridad tiene un atraso de solicitudes y no puede revisarlas ni aprovisionar los roles con rapidez. El equipo de seguridad debe crear un proceso que permita que los equipos de aplicaciones puedan aprovisionar sus propios roles IAM, pero que también limite el alcance de esos roles y evite la escalada de privilegios. ¿Qué solución cumplirá con estos requisitos con el menor esfuerzo operativo posible?",
+        "opciones": [
+            "A. Crear un grupo de IAM para cada equipo de aplicación. Asociar políticas a cada grupo. Aprovisionar usuarios IAM para cada miembro del equipo de aplicación. Agregar los usuarios IAM al grupo correspondiente utilizando control de acceso basado en roles (RBAC).",
+            "B. Delegar en los líderes de equipo de las aplicaciones la capacidad de aprovisionar roles IAM para sus equipos. Realizar una revisión trimestral de los roles que hayan sido creados. Asegurarse de que los líderes de equipo hayan recibido la capacitación adecuada para revisar roles IAM.",
+            "C. Colocar cada cuenta de AWS en su propia unidad organizativa. Agregar una SCP a cada OU para permitir acceso solo a los servicios de AWS que los equipos necesiten usar. Incluir condiciones específicas en cada cuenta de equipo.",
+            "D. Crear una SCP y una permisos boundary para los roles IAM. Agregar la SCP a la unidad organizativa raíz para que solo se puedan crear nuevos roles IAM si tienen el límite de permisos adjunto."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "81.- Una empresa utiliza AWS Organizations. La empresa quiere implementar credenciales temporales de corto plazo para que cuentas de AWS de terceros puedan acceder a las cuentas dentro de la organización. El acceso será tanto para la Consola de administración de AWS como para aplicaciones de software como servicio (SaaS) de terceros. Se debe reforzar la confianza para evitar que dos cuentas externas usen las mismas credenciales. La solución debe requerir el menor esfuerzo operativo posible. ¿Qué solución cumple con estos requisitos?",
+        "opciones": [
+            "A. Usar autenticación con tokens bearer usando OAuth o SAML para gestionar y compartir un pool de usuarios central de Amazon Cognito entre múltiples API de Amazon API Gateway.",
+            "B. Implementar AWS IAM Identity Center (anteriormente AWS Single Sign-On), y usar una fuente de identidad externa a elección. Conceder acceso a usuarios y grupos de otras cuentas usando conjuntos de permisos (permission sets) asignados por cuenta.",
+            "C. Crear un rol de IAM único para cada cuenta externa. Crear una política de confianza. Usar AWS Secrets Manager para generar una clave externa aleatoria.",
+            "D. Crear un rol de IAM único para cada cuenta externa. Crear una política de confianza que incluya una condición basada en la clave sts:ExternalId."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "181.- Una empresa desplegó una instancia Amazon EC2 en una VPC en AWS. Una alerta reciente indica que la instancia EC2 está recibiendo una cantidad sospechosa de solicitudes a través de un puerto TCP abierto desde una fuente externa. El puerto TCP permanece abierto por períodos prolongados. El equipo de seguridad de la empresa necesita detener toda la actividad hacia ese puerto desde la fuente externa para asegurarse de que la instancia EC2 no esté siendo comprometida. Sin embargo, la aplicación debe seguir estando disponible para otros usuarios. ¿Qué solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Actualizar la ACL de red asociada a la subred de la instancia EC2. Agregar una declaración Deny para el puerto y las direcciones IP de origen.",
+            "B. Actualizar el grupo de seguridad del interfaz de red elástica de la instancia EC2 para eliminar el puerto de la lista de reglas de entrada.",
+            "C. Actualizar el grupo de seguridad del ENI de la instancia EC2 agregando una entrada Deny en la lista de entrada para el puerto y las direcciones IP de origen.",
+            "D. Crear una nueva ACL de red para la subred. Denegar todo el tráfico desde la instancia EC2 para evitar que se extraigan datos."
+        ],
+        "respuestas_correctas": [
+            "A"
+        ],
+        "imagenes": []
+    },
+     {
+        "pregunta": "186.- Una empresa usó AWS Organizations para configurar un entorno con múltiples cuentas de AWS. Actualmente, la organización de la empresa tiene dos cuentas de AWS, pero se espera agregar más de 50 cuentas adicionales durante los próximos 12 meses. La empresa requiere que todas las cuentas actuales y futuras usen Amazon GuardDuty. Cada cuenta actual ya tiene GuardDuty activado. Actualmente, la empresa revisa los hallazgos de GuardDuty iniciando sesión en cada cuenta individualmente. La empresa desea tener una vista centralizada de los hallazgos de GuardDuty de las cuentas existentes y de cualquier cuenta futura. Además, debe asegurarse de que GuardDuty se active automáticamente en cualquier nueva cuenta de AWS. ¿Qué solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Activar AWS Security Hub en la cuenta principal de la organización. Configurar GuardDuty dentro de esa cuenta para enviar todos los hallazgos a Security Hub.",
+            "B. Crear una nueva cuenta de AWS dentro de la organización. Activar GuardDuty en esa cuenta. Designarla como cuenta administradora delegada para GuardDuty. Configurar GuardDuty para agregar las cuentas existentes como cuentas miembro. Seleccionar la opción para agregar automáticamente nuevas cuentas de AWS a la organización.",
+            "C. Crear una nueva cuenta en la organización. Activar GuardDuty en esa cuenta. Activar AWS Security Hub en cada cuenta. Seleccionar la opción para agregar automáticamente nuevas cuentas de AWS a la organización.",
+            "D. Activar AWS Security Hub en la cuenta principal de la organización. Designar esa cuenta como administradora delegada de Security Hub. Agregar las cuentas existentes como cuentas miembro. Seleccionar la opción para agregar automáticamente nuevas cuentas a la organización. Enviar todos los hallazgos de Security Hub a la cuenta de GuardDuty de la organización."
+        ],
+        "respuestas_correctas": [
+            "B"
+        ],
+        "imagenes": []
+    },
+    {
+        "pregunta": "299.- Una empresa ejecuta cargas de trabajo en instancias Amazon EC2 dentro de VPCs. Las instancias EC2 realizan solicitudes a buckets de Amazon S3 a través de endpoints de VPC. La empresa utiliza AWS Organizations para gestionar sus cuentas de AWS. La empresa necesita que las solicitudes realizadas por las instancias EC2 se originen desde la misma VPC para la cual se emitieron las credenciales de la instancia EC2. ¿Qué solución cumplirá con este requisito?",
+        "opciones": [
+            "A. Implementar una SCP que incluya la acción S3:* con la condición *aws:SourceVpc*: ${aws:Ec2InstanceSourceVpc}.",
+            "B. Editar los endpoints de VPC para incluir la acción S3:* con la condición aws:Ec2InstanceSourcePrivateIPv4: ${aws:VpcSourceIp}.",
+            "C. Restringir todas las acciones en las políticas del bucket S3 utilizando la clave de condición aws:SourceVpce con el valor del endpoint de VPC permitido.",
+            "D. Restringir todas las acciones en las políticas del bucket S3 utilizando la clave de condición aws:SourceVpc con el valor del ID de VPC permitido."
+        ],
+        "respuestas_correctas": [
+            "D"
+        ],
+        "imagenes": []
+    },
+     {
+        "pregunta": "305.- Una empresa tiene una aplicación que necesita leer objetos desde un bucket de Amazon S3. La empresa configura una política de IAM y la adjunta a un rol de IAM que la aplicación utiliza. Sin embargo, cuando la aplicación intenta leer objetos del bucket S3, recibe errores de AccessDenied. Un ingeniero de seguridad debe resolver este problema sin reducir la seguridad del bucket S3 ni de la aplicación. ¿Cuál solución cumplirá con estos requisitos?",
+        "opciones": [
+            "A. Adjuntar una política de recursos al bucket S3 para otorgar acceso de lectura al rol.",
+            "B. Implementar una nueva versión de la aplicación en otra región de AWS y adjuntar el rol a la aplicación.",
+            "C. Revisar la política de IAM utilizando AWS IAM Access Analyzer para asegurarse de que otorga los permisos adecuados. Validar que la aplicación esté asumiendo correctamente el rol.",
+            "D. Asegurarse de que la función Block Public Access esté desactivada en el bucket S3. Revisar los registros de AWS CloudTrail para validar que la aplicación esté asumiendo correctamente el rol."
+        ],
+        "respuestas_correctas": [
+            "C"
+        ],
+        "imagenes": []
     }
 ]
