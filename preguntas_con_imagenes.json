@@ -1,5 +1,18 @@
 [
-       {
+    {
+        "pregunta": "9.-Una empresa tiene una cuenta de AWS que aloja una aplicación en producción. La empresa recibe una notificación por correo electrónico de que Amazon GuardDuty ha detectado un hallazgo del tipo Impact:IAMUser/AnomalousBehavior en la cuenta. Un ingeniero de seguridad necesita ejecutar el procedimiento de respuesta (playbook) para investigar este incidente de seguridad, y debe recopilar y analizar la información sin afectar la aplicación. ¿Qué solución permitirá cumplir con estos requisitos de la manera más rápida posible?",
+        "opciones": [
+            "A. Iniciar sesión en la cuenta de AWS usando credenciales de solo lectura. Revisar el hallazgo de GuardDuty para obtener detalles sobre las credenciales de IAM utilizadas. Usar la consola de IAM para agregar una política DenyAll al principal de IAM.",
+            "B. Iniciar sesión en la cuenta de AWS usando credenciales de solo lectura. Revisar el hallazgo de GuardDuty para determinar qué llamadas a la API generaron el hallazgo. Usar Amazon Detective para revisar las llamadas a la API en su contexto.",
+            "C. Iniciar sesión en la cuenta de AWS usando credenciales de administrador. Revisar el hallazgo de GuardDuty para obtener detalles sobre las credenciales de IAM utilizadas. Usar la consola de IAM para agregar una política DenyAll al principal de IAM.",
+            "D. Iniciar sesión en la cuenta de AWS usando credenciales de solo lectura. Revisar el hallazgo de GuardDuty para determinar qué llamadas a la API generaron el hallazgo. Usar AWS CloudTrail Insights y AWS CloudTrail Lake para revisar las llamadas a la API en su contexto."
+        ],
+        "respuestas_correctas": [
+            "B"
+        ],
+        "imagenes": []
+    },
+    {
         "pregunta": "99.- Un usuario de IAM recibe un mensaje de “Acceso denegado” cuando intenta acceder a objetos en un bucket de Amazon S3. El usuario y el bucket S3 están en la misma cuenta de AWS. El bucket está configurado para usar cifrado del lado del servidor con claves de AWS KMS (SSE-KMS) para cifrar todos sus objetos en reposo, utilizando una clave administrada por el cliente (customer managed key) de la misma cuenta de AWS. El bucket no tiene ninguna política de bucket definida. Al usuario de IAM se le han otorgado permisos mediante una política de IAM que permite la acción kms:Decrypt sobre la clave administrada por el cliente. La política de IAM también permite las acciones s3:List* y s3:Get* sobre el bucket de S3 y sus objetos. ¿Cuál de las siguientes podría ser una razón por la cual el usuario de IAM no puede acceder a los objetos del bucket S3?",
         "opciones": [
             "A. La política de IAM necesita permitir también el permiso kms:DescribeKey.",
